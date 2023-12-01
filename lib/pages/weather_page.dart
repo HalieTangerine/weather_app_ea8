@@ -11,7 +11,7 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage>{
-
+  //apiKey
   final _weatherService = WeatherService('50dc3021fd580ce30604e4e0c170bd84');
   Weather? _weather;
 
@@ -32,7 +32,7 @@ class _WeatherPageState extends State<WeatherPage>{
 
   String getWeatherAnimation(String? mainCondition){
     if (mainCondition==null) return 'assets/sunny.json';
-
+    //animation weather
     switch (mainCondition.toLowerCase()){
       case 'clouds':
       case 'mist':
@@ -68,12 +68,17 @@ class _WeatherPageState extends State<WeatherPage>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //if null = loading city.., but if not, shows the city
             Text(_weather?.cityName ?? "loading city..", style: TextStyle(fontSize: 25),),
 
+            //weather app animation
             Lottie.asset(getWeatherAnimation(_weather?.mainCondition)),
 
+
+            //temperature
             Text('${_weather?.temperature.round()}°C', style: TextStyle(fontSize: 30),),
 
+            //weather condition
             Text(_weather?.mainCondition??"", style: TextStyle(fontSize: 20),)
           ],
         )
